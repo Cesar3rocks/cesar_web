@@ -1,0 +1,30 @@
+html{
+	background-image: url(imagenes/background.jpg);
+}
+
+.rollul {
+	color:red;
+	font-size: 50px;
+}
+
+.azul {
+	text-align: center;
+	background-color: blue;
+	font-size: 30px;
+	color: white;
+	width: 100%;
+}
+
+.button {
+	background-color: orange;
+	padding: 10px;
+	border-radius: 10px;
+	text-decoration: none;
+	color: darkblue; 
+}
+
+.menu{
+}
+
+.body{
+}

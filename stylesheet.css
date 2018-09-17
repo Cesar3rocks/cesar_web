@@ -1,6 +1,3 @@
-html{
-	background-image: url(imagenes/background.jpg);
-}
 
 .rollul {
 	color:red;
@@ -30,4 +27,7 @@ html{
 }
 .cat{
 	height: 170px;
+}
+body{
+	 background-image: url(imagenes/background.jpg);
 }

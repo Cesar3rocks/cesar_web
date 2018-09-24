@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>minijuegos</title>
+		
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body>
+		<div class="container">
+		<div class="menu">
+			<a class="button" href="index.html">Indice</a>
+			<a class="button" href="american.html">America</a>
+			<a class="button" href="mexico.html">Mexico</a>
+			<a class="button" href="minijuego.html">Minijuego Nyan</a>
+		</div>
+		<p class="azul">Minijuego Nyan</p>
+		<div class="body">
+			<input type="button" value="Piedra, papel, tijera" onclick="ppt()">
+			<div id="ppt" style="display: none;">
+				<input class="btn btn-primary" type="button" value="piedra" onclick="comprobar(1)">
+				<input class="btn btn-primary" type="button" value="papel" onclick="comprobar(2)">
+				<input class="btn btn-primary" type="button" value="tijera" onclick="comprobar(3)">
+				<div id="jugada">
+				</div>
+			</div>
+						
+
+
+		</div>
+	</div>
+		
+	</body>
+
+</html>
+
+<script type="text/javascript">
+
+	window.onload = function(){
+		alert("Bienvenido a mi minijuego Nyan");
+	}
+
+	function ppt(){
+		if(document.getElementById("ppt").style.display == "none"){
+			document.getElementById("ppt").style.display = "block";
+		} else {
+			document.getElementById("ppt").style.display = "none";
+		}
+	}
+
+	function comprobar(opcion){
+		/* 
+		*  1 es piedra
+		*  2 es papel
+		*  3 es tijera
+		*/
+		var ran,nombre,nombre2;
+		ran =Math.random();
+		if(ran < 0.333333333){
+			ran = 1;
+		} else if(ran > 0.6666666){
+			ran = 3;// diablo
+		} else {
+			ran = 2;
+		}
+		if(opcion == 1){ 
+			nombre = "imagenes/piedra.png";
+		}
+		else if(opcion == 2){
+		 nombre = "imagenes/papel.png";
+		}
+		else {
+			nombre = "imagenes/tijera.png";
+		}
+
+		if(ran == 1){ 
+			nombre2 = "imagenes/piedra.png";
+		}
+		else if(ran == 2){
+		 nombre2 = "imagenes/papel.png";
+		}
+		else {
+			nombre2 = "imagenes/tijera.png";
+		}
+
+		document.getElementById("jugada").innerHTML = "<img style='width:300px;' src=" + nombre + ">" + "<img style='width:300px; margin-left:100px;' src=" + nombre2 + ">";
+		if(opcion == ran){
+			alert("Empate");
+		} else if((opcion == 1) && (ran == 2)){
+			alert("Pierdes!");
+		} else if((opcion == 1) && (ran == 3)){
+			alert("Ganas!");
+		} else if((opcion == 2) && (ran == 1)){
+			alert("Ganas!");
+
+		} else if((opcion == 2) && (ran == 3)){
+			alert("Pierdes!");
+		} else if((opcion == 3) && (ran == 1)){
+			alert("Pierdes!");
+		} else if((opcion == 3) && (ran == 2)){
+			alert("Ganas!");
+		}
+	}
+	
+</script>

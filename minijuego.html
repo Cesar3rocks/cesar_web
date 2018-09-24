@@ -19,14 +19,23 @@
 		<p class="azul">Minijuego Nyan</p>
 		<div class="body">
 			<input type="button" value="Piedra, papel, tijera" onclick="ppt()">
-			<div id="ppt" style="display: none;">
-				<input class="btn btn-primary" type="button" value="piedra" onclick="comprobar(1)">
-				<input class="btn btn-primary" type="button" value="papel" onclick="comprobar(2)">
-				<input class="btn btn-primary" type="button" value="tijera" onclick="comprobar(3)">
-				<div id="jugada">
+			<div id="ppt" style="display: none;color:black;">
+				<input class="btn btn-primary" type="button" value="piedra" onclick="ppt_comprobar(1)">
+				<input class="btn btn-primary" type="button" value="papel" onclick="ppt_comprobar(2)">
+				<input class="btn btn-primary" type="button" value="tijera" onclick="ppt_comprobar(3)">
+				<br>Fichas: <div id="ppt_fichas">10</div>
+				<div id="ppt_jugada">
 				</div>
 			</div>
-						
+			
+			<input type="button" value="Cara o cruz" onclick="cc()">
+			<div id="cc" style="display: none;color:black">
+				<input class="btn btn-primary" type="button" value="cara" onclick="cc_comprobar(1)">
+				<input class="btn btn-primary" type="button" value="cruz" onclick="cc_comprobar(2)">
+				<br>Fichas:<div id="ppt_fichas">10</div>
+				<div id="cc_jugada">
+				</div>
+			</div>	
 
 
 		</div>
@@ -50,19 +59,61 @@
 		}
 	}
 
-	function comprobar(opcion){
+	function cc(){
+		if(document.getElementById("cc").style.display == "none"){
+			document.getElementById("cc").style.display = "block";
+		} else {
+			document.getElementById("cc").style.display = "none";
+		}
+	}
+
+	function cc_comprobar(opcion){
+		/* 
+		*  1 es cara
+		*  2 es cruz
+		*/
+		var ran,nombre;
+		ran =Math.random();
+		if(ran < 0.5){
+			ran = 1;
+		} else {
+			ran = 2;
+		}
+		
+		if(ran == 1){ 
+			nombre = "imagenes/cara.png";
+		}
+		else {
+			nombre = "imagenes/cruz.gif";
+		}
+		
+
+		document.getElementById("cc_jugada").innerHTML = "<img style='width:300px;' src=" + nombre + ">";
+		if(opcion == ran){
+			alert("Has acertado!");
+		} else {
+			alert("Has perdido!");
+		}
+	}
+
+	function ppt_comprobar(opcion){
 		/* 
 		*  1 es piedra
 		*  2 es papel
 		*  3 es tijera
 		*/
-		var ran,nombre,nombre2;
+		var ran,nombre,nombre2,fichas;
 		ran =Math.random();
-		if(ran < 0.333333333){
+		fichas = parseInt(document.getElementById("ppt_fichas").innerHTML);
+		if(fichas == 0){
+			alert("No puedes jugar, no tienes fichas");
+		} else {
+			if(ran < 0.333333333){
 			ran = 1;
 		} else if(ran > 0.6666666){
 			ran = 3;// diablo
-		} else {
+		} 
+		else {
 			ran = 2;
 		}
 		if(opcion == 1){ 
@@ -85,23 +136,31 @@
 			nombre2 = "imagenes/tijera.png";
 		}
 
-		document.getElementById("jugada").innerHTML = "<img style='width:300px;' src=" + nombre + ">" + "<img style='width:300px; margin-left:100px;' src=" + nombre2 + ">";
+		document.getElementById("ppt_jugada").innerHTML = "<img style='width:300px;' src=" + nombre + ">" + "<img style='width:300px; margin-left:100px;' src=" + nombre2 + ">";
 		if(opcion == ran){
 			alert("Empate");
 		} else if((opcion == 1) && (ran == 2)){
 			alert("Pierdes!");
+			document.getElementById("ppt_fichas").innerHTML = fichas - 1;
 		} else if((opcion == 1) && (ran == 3)){
 			alert("Ganas!");
+			document.getElementById("ppt_fichas").innerHTML = fichas + 1;
 		} else if((opcion == 2) && (ran == 1)){
 			alert("Ganas!");
+			document.getElementById("ppt_fichas").innerHTML = fichas + 1;
 
 		} else if((opcion == 2) && (ran == 3)){
 			alert("Pierdes!");
+			document.getElementById("ppt_fichas").innerHTML = fichas - 1;
 		} else if((opcion == 3) && (ran == 1)){
 			alert("Pierdes!");
+			document.getElementById("ppt_fichas").innerHTML = fichas - 1;
 		} else if((opcion == 3) && (ran == 2)){
 			alert("Ganas!");
+			document.getElementById("ppt_fichas").innerHTML = fichas + 1;
 		}
+		}
+		
 	}
 	
 </script>
